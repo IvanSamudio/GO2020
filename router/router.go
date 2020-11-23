@@ -1,7 +1,7 @@
 package router
 
 import (
-	controller "GO2020/Controller/productoconntroller"
+	controller "github.com/IvanSamudio/GO2020/Controller/productocontroller"
 	"github.com/gin-gonic/gin"
 )
 

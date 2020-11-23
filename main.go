@@ -1,9 +1,9 @@
 package main
 
 import (
-	controller "GO2020/Controller/productoconntroller"
-	model "GO2020/model/productoModel"
-	router "GO2020/router/router"
+	controller "github.com/IvanSamudio/GO2020/Controller/productocontroller"
+	model "github.com/IvanSamudio/GO2020/model/productomodel"
+	router "github.com/IvanSamudio/GO2020/router/router"
 	_ "github.com/go-sql-driver/mysql"
 )
 

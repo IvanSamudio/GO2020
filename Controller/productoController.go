@@ -1,7 +1,7 @@
 package productocontroller
 
 import (
-	productModel "GO2020/model/productoModel"
+	productModel "github.com/IvanSamudio/GO2020/model/productomodel"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
