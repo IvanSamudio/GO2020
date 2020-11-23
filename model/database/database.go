@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/jeremiascaballero/ApiGolangMvc/model"
+	"github.com/IvanSamudio/GO2020/model"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

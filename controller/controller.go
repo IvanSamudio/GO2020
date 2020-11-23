@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/IvanSamudio/GO2020/service"
 	"github.com/gin-gonic/gin"
-	"github.com/jeremiascaballero/ApiGolangMvc/service"
 )
 
 // HTTPController ...
@@ -28,6 +28,7 @@ func (c *HTTPController) Run() {
 
 func makeEndpoints(r *gin.Engine, s *service.Vuelo) {
 	r.GET("/vuelos/:id", makeFindHandler(s))
+	r.GET("/vuelos/", makeFindHandler(s))
 }
 
 func makeFindHandler(s *service.Vuelo) gin.HandlerFunc {

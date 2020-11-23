@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/jeremiascaballero/ApiGolangMvc/model"
-	"github.com/jeremiascaballero/ApiGolangMvc/model/database"
+	"github.com/IvanSamudio/GO2020/database"
+	"github.com/IvanSamudio/GO2020/model"
 )
 
 // Vuelo define el comportamiento del servicio de vuelos

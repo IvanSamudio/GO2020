@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jeremiascaballero/ApiGolangMvc/controller"
-	"github.com/jeremiascaballero/ApiGolangMvc/model"
-	"github.com/jeremiascaballero/ApiGolangMvc/model/database"
-	"github.com/jeremiascaballero/ApiGolangMvc/service"
+	"github.com/IvanSamudio/GO2020/controller"
+	"github.com/IvanSamudio/GO2020/database"
+	"github.com/IvanSamudio/GO2020/model"
+	"github.com/IvanSamudio/GO2020/service"
 )
 
 func main() {
