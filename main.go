@@ -4,7 +4,7 @@ import (
 	controller "github.com/IvanSamudio/GO2020/Controller/productocontroller"
 	model "github.com/IvanSamudio/GO2020/model/productomodel"
 	router "github.com/IvanSamudio/GO2020/router/router"
-	//	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
