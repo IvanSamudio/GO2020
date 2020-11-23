@@ -1,4 +1,4 @@
-module github.com/jeremiascaballero/ApiGolangMvc
+module github.com/IvanSamudio/GO2020
 
 go 1.14
 
