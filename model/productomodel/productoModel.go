@@ -1,5 +1,10 @@
 package productomodel
 
+import (
+	"database/sql"
+	// comment
+)
+
 // Database ..
 type Database struct {
 	DB *sql.DB
