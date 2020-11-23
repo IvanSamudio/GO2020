@@ -8,7 +8,7 @@ import (
 // Start ..
 func Start() {
 	r := gin.Default()
-	r.GET("/getproductos", controller.GetVuelos)
+	r.GET("/getproductos", controller.GetProductos)
 	r.Run()
 
 }
