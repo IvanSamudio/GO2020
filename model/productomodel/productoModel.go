@@ -1,9 +1,8 @@
 package productomodel
 
-import (
-	"database/sql"
-	// comment
-)
+import "database/sql"
+
+// comment
 
 // Database ..
 type Database struct {
