@@ -2,6 +2,7 @@ package objeto
 
 // ProductoJSON ..
 type ProductoJSON struct {
-	Nombre string `json:"nombre"`
-	Precio int    `json:"precio"`
+	ID     int    `json:"id" param:"id"`
+	Nombre string `json:"nombre" form:"nombre"`
+	Precio int    `json:"precio" form:"precio"`
 }

@@ -13,8 +13,8 @@ type Database struct {
 
 // Producto ..
 type Producto struct {
-	ID     int    `json:"id_producto"`
-	Nombre string `json:"nombre"`
+	ID     int    `json:"id" sql:"AUTO_INCREMENT"`
+	Nombre string `json:"nombre" form:"nombre"`
 	Precio int    `json:"precio"`
 }
 
@@ -34,13 +34,11 @@ func NewDataBase() Database {
 // GetProductos ..
 func (db *Database) GetProductos() []*Producto {
 	var arrp []*Producto
-
 	resultado, err := db.DB.Query("SELECT *FROM producto")
 	log.Printf("pepito", resultado)
 	if err != nil {
 		panic(err.Error())
 	}
-
 	for resultado.Next() {
 		var p Producto
 		resultado.Scan(&p.ID, &p.Nombre, &p.Precio)
@@ -50,16 +48,6 @@ func (db *Database) GetProductos() []*Producto {
 	return arrp
 }
 
-//func (db *Database) getProducto(id int) *Producto {
-//	var v *Producto
-//	selecte, err := db.DB.Query("SELECT *FROM vuelo WHERE id_producto = ?", id)
-//	if err != nil {
-//		panic(err.Error())
-//	}
-//	v = append(selecte)
-//	defer selecte.close()
-//	return selecte
-//}
 //GetProducto ...
 func (db *Database) GetProducto(id int) []*Producto {
 	var arrp []*Producto
@@ -79,9 +67,6 @@ func (db *Database) GetProducto(id int) []*Producto {
 
 // UpdateProducto ..
 func (db *Database) UpdateProducto(id, precio int, nombre string) {
-	log.Printf("id", id)
-	log.Printf("nombre", nombre)
-	log.Printf("precio", precio)
 	actualizar, err := db.DB.Query("UPDATE  producto SET nombre = ?, precio=? WHERE id_producto = ?", nombre, precio, id)
 	if err != nil {
 		panic(err.Error())
@@ -99,13 +84,26 @@ func (db *Database) DeleteProducto(id int) {
 }
 
 // InsertProducto ..
-func (db *Database) InsertProducto(id, precio int, nombre string) {
-	log.Printf("id", id)
-	log.Printf("nombre", nombre)
-	log.Printf("precio", precio)
-	actualizar, err := db.DB.Query("INSERT INTO `producto`(`id_producto`, `nombre`, `precio`) VALUES (?,?,?)", id, nombre, precio)
+func (db *Database) InsertProducto(precio int, nombre string) {
+	actualizar, err := db.DB.Query("INSERT INTO `producto`(`nombre`, `precio`) VALUES (?,?)", nombre, precio)
 	if err != nil {
 		panic(err.Error())
 	}
 	defer actualizar.Close()
+}
+
+//GetLastID ...
+func (db *Database) GetLastID() int {
+	var arrp *Producto
+	resultado, err := db.DB.Query("SELECT id_producto from producto ORDER BY id_producto DESC LIMIT 1")
+	if err != nil {
+		panic(err.Error())
+	}
+	for resultado.Next() {
+		var p Producto
+		resultado.Scan(&p.ID)
+		arrp = &p
+	}
+	defer resultado.Close()
+	return arrp.ID
 }

@@ -10,7 +10,6 @@ import (
 func main() {
 	db := modelo.NewDataBase()
 	defer db.DB.Close()
-	// le paso la instancia de la base de datos
 	controller.NewController(&db)
 	router.Start()
 }

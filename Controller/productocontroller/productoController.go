@@ -1,8 +1,6 @@
 package productocontroller
 
 import (
-	"fmt"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -28,15 +26,8 @@ func GetProductos(ctx *gin.Context) {
 
 // GetProducto ..
 func GetProducto(ctx *gin.Context) {
-	id := ctx.Param("id")
-	var valor int
-	valor, err := strconv.Atoi(id)
-	if err != nil {
-		panic("No es un integer")
-	}
-	var param objeto.ProductoJSON
-	ctx.BindJSON(&param)
-	p := modelo.GetProducto(valor)
+	var id = convertirValorEntero(ctx.Param("id"))
+	p := modelo.GetProducto(id)
 	ctx.JSON(http.StatusOK, gin.H{
 		"Object": p,
 	})
@@ -44,40 +35,42 @@ func GetProducto(ctx *gin.Context) {
 
 // UpdateProducto ..
 func UpdateProducto(c *gin.Context) {
-	student := objeto.ProductoJSON{}
-	err := c.BindJSON(&student)
-	id := c.Param("id")
-	var valor int
-	valor, err = strconv.Atoi(id)
-	if err != nil {
-		panic("No es un integer")
-	}
-	modelo.UpdateProducto(valor, student.Precio, student.Nombre)
-	exception := ""
-	if err != nil {
-		exception = err.Error()
-	}
-	c.JSON(200, gin.H{"exception": exception, "data": student})
+	var producto objeto.ProductoJSON
+	producto.Nombre = c.Request.FormValue("nombre")
+	producto.ID = convertirValorEntero(c.Param("id"))
+	producto.Precio = convertirValorEntero(c.Request.FormValue("precio"))
+	c.BindJSON(&producto)
+	modelo.UpdateProducto(producto.ID, producto.Precio, producto.Nombre)
+	c.JSON(http.StatusCreated, gin.H{
+		"Objeto editado": &producto,
+	})
 }
 
 // DeleteProducto ..
 func DeleteProducto(contexto *gin.Context) {
-	id := contexto.Param("id")
-	var valor int
-	valor, err := strconv.Atoi(id)
-	if err != nil {
-		panic("No es un integer")
-	}
-
-	fmt.Println(valor)
-	modelo.DeleteProducto(valor)
+	var ID = convertirValorEntero(contexto.Param("id"))
+	modelo.DeleteProducto(ID)
 	contexto.JSON(http.StatusCreated, gin.H{
-		"Objeto borrado": valor,
+		"Objeto borrado": ID,
 	})
 }
 
-// InsertProducto ..
+// InsertProducto ...
 func InsertProducto(c *gin.Context) {
-	id := c.Request.GetBody
-	log.Printf("asdas", id)
+	var producto objeto.ProductoJSON
+	producto.Nombre = c.Request.FormValue("nombre")
+	producto.Precio = convertirValorEntero(c.Request.FormValue("precio"))
+	c.BindJSON(&producto)
+	modelo.InsertProducto(producto.Precio, producto.Nombre)
+	producto.ID = modelo.GetLastID()
+	c.JSON(http.StatusCreated, gin.H{
+		"Objeto Creado": &producto,
+	})
+
+}
+
+func convertirValorEntero(convertir string) int {
+	var valor int
+	valor, _ = strconv.Atoi(convertir)
+	return valor
 }
