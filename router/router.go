@@ -9,6 +9,10 @@ import (
 func Start() {
 	r := gin.Default()
 	r.GET("/getproductos", controller.GetProductos)
+	r.PUT("/updateproducto/:id", controller.UpdateProducto)
+	r.GET("/getproducto/:id", controller.GetProducto)
+	r.DELETE("/deleteproducto/:id", controller.DeleteProducto)
+	r.PATCH("/insertproducto/:id", controller.InsertProducto)
 	r.Run()
 
 }

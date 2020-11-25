@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-11-2020 a las 13:15:20
--- Versión del servidor: 10.4.10-MariaDB
--- Versión de PHP: 7.3.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 24-11-2020 a las 00:09:21
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `producto`
+-- Base de datos: `productos`
 --
 
 -- --------------------------------------------------------
@@ -28,21 +28,30 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `producto`;
-CREATE TABLE IF NOT EXISTS `producto` (
-  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(64) NOT NULL,
-  `precio` int(11) NOT NULL,
-  PRIMARY KEY (`id_vuelo`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+CREATE TABLE `producto` (
+  `id_producto` int(30) NOT NULL,
+  `nombre` varchar(300) NOT NULL,
+  `precio` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `nombre`,`precio`) VALUES
-(1, 'azucar',200),
-(2, 'harina',100);
+INSERT INTO `producto` (`id_producto`, `nombre`, `precio`) VALUES
+(0, 'harina', 110),
+(1, 'yerba', 100),
+(2, 'atun', 50);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id_producto`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
